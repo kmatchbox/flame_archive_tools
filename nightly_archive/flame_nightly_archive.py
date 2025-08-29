@@ -61,9 +61,9 @@ else:
 all_projects = ""
 
 # Is Flame running?
-FLAME_RUNNING_CHECK = "ps aux | grep \"opt/Autodesk/flame\" | wc -l"
-FLAME_RUNNING_PS_COUNT = subprocess.check_output(FLAME_RUNNING_CHECK, shell=True, text=True)
-if int(FLAME_RUNNING_PS_COUNT.strip()) > 2:
+flame_running_check = "ps aux | grep \"opt/Autodesk/flame\" | wc -l"
+flame_running_ps_count = subprocess.check_output(flame_running_check, shell=True, text=True)
+if int(flame_running_ps_count.strip()) > 2:
     print("Flame is running, so not doing anything. Exiting script.")
     sys.exit()
 else:
