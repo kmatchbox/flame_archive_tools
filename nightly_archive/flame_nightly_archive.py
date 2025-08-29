@@ -1,6 +1,6 @@
 """
 Script Name: Flame Nightly Archive
-Script Version: 1.8
+Script Version: 1.0
 
 Creation date: 28.08.25
 Modified date: 28.08.25
