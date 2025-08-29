@@ -8,6 +8,7 @@ The scripts backup either Flame's clip library or the project folder (pre-2026) 
 
 ### How To Use:
 `/bin/bash /path/to/backup_flame_cliplib.sh`
+
 `/bin/bash /path/to/backup_flame_project.sh`
 
 It's best to add this to your crontab so it is run every night at your desired time.
