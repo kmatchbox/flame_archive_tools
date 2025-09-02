@@ -1,9 +1,9 @@
 """
 Script Name: Flame Nightly Archive
-Script Version: 1.0
+Script Version: 1.1
 
 Creation date: 28.08.25
-Modified date: 28.08.25
+Modified date: 02.09.25
 
 Description:
 
@@ -12,6 +12,10 @@ Description:
     one if one doesn't exist yet.
 
 Change Log:
+
+	v1.1: Added compatibility for older versions of Python.
+	      The subprocess routine added universal_newlines=True in 3.7, changed
+	      that to universal_newlines=True for 3.6 support.
 
     v1.0: Inital release
 
@@ -62,7 +66,7 @@ all_projects = ""
 
 # Is Flame running?
 flame_running_check = "ps aux | grep \"opt/Autodesk/flame\" | wc -l"
-flame_running_ps_count = subprocess.check_output(flame_running_check, shell=True, text=True)
+flame_running_ps_count = subprocess.check_output(flame_running_check, shell=True, universal_newlines=True)
 if int(flame_running_ps_count.strip()) > 2:
     print("Flame is running, so not doing anything. Exiting script.")
     sys.exit()
@@ -110,7 +114,7 @@ if all_projects:
 				os.makedirs(archive_dir)
 				format_cmd = flame_archive_bin + init_format_cmd + current_project + " -F " + archive_file
 				
-				p = subprocess.Popen(format_cmd, shell=True, stderr=subprocess.PIPE, stdin=subprocess.PIPE, text=True)
+				p = subprocess.Popen(format_cmd, shell=True, stderr=subprocess.PIPE, stdin=subprocess.PIPE, universal_newlines=True)
 				while True:
 				    out = p.stderr.read(1)
 				    if out == '' and p.poll() != None:
@@ -132,7 +136,7 @@ if all_projects:
 			# Back-up project
 			backup_cmd = flame_archive_bin + init_backup_cmd + current_project + " -F " + archive_file
 
-			p = subprocess.Popen(backup_cmd, shell=True, stderr=subprocess.PIPE, stdin=subprocess.PIPE, text=True)
+			p = subprocess.Popen(backup_cmd, shell=True, stderr=subprocess.PIPE, stdin=subprocess.PIPE, universal_newlines=True)
 			while True:
 			    out = p.stderr.read(1)
 			    if out == '' and p.poll() != None:
